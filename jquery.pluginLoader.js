@@ -23,14 +23,12 @@
 var loader = {};
 var methods = {
 	init: function($this, plugins) {
-		console.log(plugins);
 		return $this.each(function(index) {
 			var self = $(this);
 			var attrs = self[0].attributes;
 			for (var i = 0; i < attrs.length; i++) {
 				var attrName = attrs[i].nodeName;
 				if (!attrName.match(/data-(.)/) || plugins.indexOf(attrName.replace(/data-/, '')) === -1) {
-					console.log(attrName + ' didn\'t match');
 					continue;
 				}
 				var parsed = attrs[i].nodeName.replace(/data-/, '');
@@ -40,7 +38,6 @@ var methods = {
 					if (self[parsed]) {
 						self[parsed](self.data(parsed));
 					}
-					console.log('no loader method defined for ' + attrs[i].nodeName.replace(/data-/, ''));
 				}
 			}
 		});
@@ -54,6 +51,7 @@ $.fn.pluginLoader = function(plugins, options) {
 	}
 	loader = $.extend(loader, options);
 	var find = plugins.map(function(el) { return '[data-'+el+']'; }).join(', ');
-	return methods.init($(find), plugins);
+	methods.init($(find), plugins);
+	return this;
 }
 })(jQuery);
