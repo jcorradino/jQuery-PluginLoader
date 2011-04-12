@@ -1,5 +1,5 @@
 (function($) {
 $(document).ready(function() {
-	$(document).pluginLoader(['content ', ' params'], {'content': function(el, opt) { alert('content loader method called'); }});
+	$(document).pluginLoader(['content ', ' params'], {'content': function(el, opt) { console.log('content loader method called'); }});
 });
 })(jQuery);
