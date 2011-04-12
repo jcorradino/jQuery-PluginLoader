@@ -51,7 +51,7 @@ $.fn.pluginLoader = function(plugins, options) {
 	}
 	loader = $.extend(loader, options);
 	var find = plugins.map(function(el) { return '[data-'+el+']'; }).join(', ');
-	methods.init($(find), plugins);
+	methods.init($(find, this), plugins);
 	return this;
 }
 })(jQuery);
