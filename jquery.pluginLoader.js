@@ -28,10 +28,20 @@ var methods = {
 			var attrs = self[0].attributes;
 			for (var i = 0; i < attrs.length; i++) {
 				var attrName = attrs[i].nodeName;
-				if (!attrName.match(/data-(.)/) || plugins.indexOf(attrName.replace(/data-/, '')) === -1) {
+				var parsed = attrs[i].nodeName.replace(/data-/, '');
+				var split = parsed.split('-');
+				if (split.length > 1) {
+					var data = self.data(parsed);
+					self.removeData(parsed);
+					parsed = split[0];
+					for (var i = 1; i < split.length; i++) {
+						parsed = parsed + split[i].charAt(0).toUpperCase() + split[i].slice(1);
+					}
+					self.data(parsed, data);
+				}
+				if (!attrName.match(/data-(.)/) || plugins.indexOf(parsed) === -1) {
 					continue;
 				}
-				var parsed = attrs[i].nodeName.replace(/data-/, '');
 				if (loader[parsed]) {
 					loader[parsed](self, self.data(parsed));
 				} else {

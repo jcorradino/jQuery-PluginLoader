@@ -6,10 +6,11 @@
 		<script src="jquery.pluginLoader.js" type="text/javascript"></script>
 		<script src="params.js" type="text/javascript"></script>
 		<script src="content.js" type="text/javascript"></script>
+		<script src="camelCase.js" type="text/javascript"></script>
 		<script src="scripts.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="required" data-content='{"content":"This is content from the html tag"}' data-name="joey" data-params='{"content":"This is the content that will fill the tag"}'></div>
-		<div id="container" data-params='{"content":"This is the content that will fill the tag"}'></div>
+		<div id="container" data-camel-case='{"content": "this is camelCase content"}' data-params='{"content":"This is the content that will fill the tag"}'></div>
 	</body>
 </html>
